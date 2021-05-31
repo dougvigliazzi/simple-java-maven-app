@@ -29,6 +29,11 @@ pipeline {
                 }            
             }
         }
+        stage ('Deploy Test') {
+            steps {
+                deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://192.168.0.120:8001/')], contextPath: 'simple', war: 'target/simple.war'
+            }
+        }
     }
 
 }
